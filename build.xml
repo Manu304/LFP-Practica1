@@ -1,5 +1,5 @@
 <?xml version ="1.0" ?>
-<project name="ValidadorToken" default ="jar" basedir =".">
+<project name="Validador Token" default ="jar" basedir =".">
 <description >
 Ejemplo sencillo de utilización de ant para compilación
 </description >
