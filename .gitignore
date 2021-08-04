@@ -1,0 +1,9 @@
+/dist/
+/build/
+nbproject/
+.classpath
+.project
+.settings/
+nbactions.xml
+*.form
+test/
