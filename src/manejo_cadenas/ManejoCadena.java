@@ -36,5 +36,11 @@ public class ManejoCadena {
         }
         return igual;
     }
+
+    public static String quitarSalto(String text){
+        text = text.trim();
+        text = text.replace("\n", " ");
+        return text;
+    }
     
 }
