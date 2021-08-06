@@ -10,7 +10,8 @@ public class ManejadorToken {
     String[] palabras;
 
     public ManejadorToken(String cadena){
-        this.palabras = ManejoCadena.listaPalabras(cadena);
+        //this.palabras = ManejoCadena.listaPalabras(cadena);
+        this.palabras = ManejoCadena.listaPalabras2(cadena);
         clasificar();
     }
 

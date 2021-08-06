@@ -1,5 +1,7 @@
 package src.manejo_cadenas;
 
+import java.util.ArrayList;
+
 public class ManejoCadena {
 
     private static final char[] SIMBOLOS = {'{', '}', '(', ')', '[', ']', ';', ',', ':'};
@@ -58,9 +60,37 @@ public class ManejoCadena {
         return text;
     }
     
-    public static String[] listaPalabras(String text){
+    /*public static String[] listaPalabras(String text){
         text = quitarSalto(text);
         String[] palabras = text.split(" ");
         return palabras;
+    }*/
+
+    public static String[] listaPalabras2(String cadena){
+        cadena = quitarSalto(cadena);
+        ArrayList<String> listaPalabras = new ArrayList<>();
+        int inicio = 0, fin = 0;
+
+        while (fin < cadena.length()-1) {
+            for (int i = inicio; i < cadena.length(); i++) {
+                fin = i;
+                if (cadena.charAt(i) == ' ') {
+                    listaPalabras.add(cadena.substring(inicio, fin));
+                    inicio=fin+1;  
+                }else if(i == cadena.length()-1){
+                    listaPalabras.add(cadena.substring(inicio, cadena.length()));
+                }
+            }           
+
+            System.out.println("acabo de dar una vuelta");
+
+        }
+
+        String[] palabras = new String[listaPalabras.size()];
+        for (int i = 0; i < listaPalabras.size(); i++) {
+            palabras[i] = listaPalabras.get(i);
+        }
+        return palabras;
+
     }
 }
