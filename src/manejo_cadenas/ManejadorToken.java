@@ -7,24 +7,45 @@ import src.token.Token;
 
 public class ManejadorToken {
     ArrayList<Token> tokens = new ArrayList<>();
+    String[] palabras;
 
-    private int inicioChar = -1, finChar = -1;
+    public ManejadorToken(String cadena){
+        this.palabras = ManejoCadena.listaPalabras(cadena);
+    }
 
-    public void separarToken(String text){
-        String cadena = ManejoCadena.quitarSalto(text);
-        String contenidoToken = "";
-        int finalPalabra = -1;
-        for (int i = 0; i < cadena.length(); i++) {
-            if (cadena.charAt(i) != ' ') {
-                if (ManejoCadena.esSimbolo(cadena.charAt(i))) {
-                    tokens.add(new Token(Character.toString(cadena.charAt(i)), TipoToken.SIMBOLO));
-                } else {
-                    
+    public void clasificar(){
+        for (int i = 0; i < palabras.length; i++) {
+            if (palabras[i].length() > 0) {
+                String text = analizadorPalabra(palabras[i]);
+                if (ManejoCadena.esDecimal(text)) {
+                    tokens.add(new Token(text, TipoToken.NUMERO_DECIMAL));
+                }else if(ManejoCadena.esEntero(text)){
+                    tokens.add(new Token(text, TipoToken.NUMERO_ENTERO));
+                }else if(ManejoCadena.esId(text)){
+                    tokens.add(new Token(text, TipoToken.IDENTIFICADOR));
+                }else{
+                    tokens.add(new Token(text, TipoToken.ERROR));
                 }
-            }else{
-                contenidoToken = "";
+            }
+        } 
+    }
 
+    public String analizadorPalabra(String palabra){
+        String valor = "";
+        palabra = palabra.trim();
+        for (int i = 0; i < palabra.length(); i++) {
+            // tener cuidado por si hay espacios en blanco dobles
+            if (ManejoCadena.esSimbolo(palabra.charAt(i))) {
+                tokens.add(new Token(palabra.charAt(i), TipoToken.SIMBOLO));
+            }else{
+                valor += palabra.charAt(i);
             }
         }
+        return valor;
     }
+
+    public ArrayList<Token> getTokens() {
+        return tokens;
+    }
+    
 }
