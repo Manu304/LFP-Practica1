@@ -4,42 +4,23 @@ public class Token {
     private String valor;
     private TipoToken tipo;
     
-    public Token(String valor) {
+    public Token(String valor, TipoToken tipo) {
         this.valor = valor;
+        this.tipo = tipo;
     }
 
-    /*private TipoToken asignarTipo(String valor){
-        int contadorID = 0, contadorEntero = 0, contadorDecimal = 0, contadorSimbolo = 0;
-        for (int i = 0; i < valor.length(); i++) {
-            
-        }
-    }*/
-
-    private boolean esEntero(String text){
-        boolean valido = false;
-        try {
-            Integer.parseInt(text);
-            valido = true;
-
-        } catch (NumberFormatException e) {
-            System.out.println("No es un entero");
-        }
-        return valido;
+    public Token(char valor, TipoToken tipo) {
+        this.valor = Character.toString(valor);
+        this.tipo = tipo;
     }
-
-    private boolean esDecimal(String text){
-        boolean valido = false;
-        try {
-            Double.parseDouble(text);
-            valido = true;
-        } catch (NumberFormatException e) {
-            System.out.println("No es decimal");
-        }
-
-        return valido;
-    }
-
     
+    public TipoToken getTipo() {
+        return tipo;
+    }
 
+    @Override
+    public String toString() {
+        return valor;
+    }
     
 }
