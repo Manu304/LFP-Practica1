@@ -11,16 +11,17 @@ public class ManejadorToken {
 
     public ManejadorToken(String cadena){
         this.palabras = ManejoCadena.listaPalabras(cadena);
+        clasificar();
     }
 
     public void clasificar(){
         for (int i = 0; i < palabras.length; i++) {
             if (palabras[i].length() > 0) {
                 String text = analizadorPalabra(palabras[i]);
-                if (ManejoCadena.esDecimal(text)) {
-                    tokens.add(new Token(text, TipoToken.NUMERO_DECIMAL));
-                }else if(ManejoCadena.esEntero(text)){
+                if (ManejoCadena.esEntero(text)) {
                     tokens.add(new Token(text, TipoToken.NUMERO_ENTERO));
+                }else if(ManejoCadena.esDecimal(text)){
+                    tokens.add(new Token(text, TipoToken.NUMERO_DECIMAL));
                 }else if(ManejoCadena.esId(text)){
                     tokens.add(new Token(text, TipoToken.IDENTIFICADOR));
                 }else{
@@ -30,7 +31,7 @@ public class ManejadorToken {
         } 
     }
 
-    public String analizadorPalabra(String palabra){
+    private String analizadorPalabra(String palabra){
         String valor = "";
         palabra = palabra.trim();
         for (int i = 0; i < palabra.length(); i++) {
