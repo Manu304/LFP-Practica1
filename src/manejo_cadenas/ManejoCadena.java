@@ -2,7 +2,7 @@ package src.manejo_cadenas;
 
 public class ManejoCadena {
 
-    private static final char[] SIMBOLOS = {'{', '}', '(', ')', '[', ']', ';', ','};
+    private static final char[] SIMBOLOS = {'{', '}', '(', ')', '[', ']', ';', ',', ':'};
 
     public static boolean esEntero(String text){
         boolean valido = false;
